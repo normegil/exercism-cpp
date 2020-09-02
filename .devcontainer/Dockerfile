@@ -22,6 +22,10 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get install -y gdb
 
+# MAKE
+RUN apt-get update && \
+    apt-get install make
+
 # CURL
 RUN apt-get update && \
     apt-get install -y curl
