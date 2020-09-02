@@ -8,17 +8,17 @@
 
 namespace isogram
 {
-    bool is_isogram(const std::string toCheck)
+    bool is_isogram(const std::string toCheck) noexcept
     {
         std::list<char> found = {};
-        for (const char to_find : toCheck)
+        for (const auto to_find : toCheck)
         {
             if (' ' == to_find || '-' == to_find)
             {
                 continue;
             }
 
-            const char normalized = tolower(to_find, std::locale());
+            const auto normalized = tolower(to_find, std::locale());
             if (std::find(found.begin(), found.end(), normalized) != found.end())
             {
                 return false;
