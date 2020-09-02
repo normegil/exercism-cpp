@@ -1,6 +1,7 @@
 FROM debian:10
 
 ARG GPP_VERSION=10
+ARG CMAKE_VERSION=3.18.2
 ARG EXERCISM_VERSION=3.0.13
 
 # Unstable repositories
@@ -21,10 +22,19 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get install -y gdb
 
-# Exercism
+# CURL
 RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -LJ https://github.com/exercism/cli/releases/download/v${EXERCISM_VERSION}/exercism-${EXERCISM_VERSION}-linux-x86_64.tar.gz -o /tmp/exercism.tar.gz && \
+    apt-get install -y curl
+    
+# CMake
+RUN curl -LJ https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh -o /tmp/cmake-install.sh && \
+    chmod u+x /tmp/cmake-install.sh && \
+    mkdir /usr/bin/cmake && \
+    /tmp/cmake-install.sh --skip-license --prefix=/usr/bin/cmake && \
+    rm /tmp/cmake-install.sh
+
+# Exercism
+RUN curl -LJ https://github.com/exercism/cli/releases/download/v${EXERCISM_VERSION}/exercism-${EXERCISM_VERSION}-linux-x86_64.tar.gz -o /tmp/exercism.tar.gz && \
     mkdir /tmp/exercism && \
     tar -xf /tmp/exercism.tar.gz -C /tmp/exercism && \
     cp /tmp/exercism/exercism /usr/bin
