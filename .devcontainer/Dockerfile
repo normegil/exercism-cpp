@@ -29,9 +29,10 @@ RUN apt-get update && \
 # CMake
 RUN curl -LJ https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-Linux-x86_64.sh -o /tmp/cmake-install.sh && \
     chmod u+x /tmp/cmake-install.sh && \
-    mkdir /usr/bin/cmake && \
-    /tmp/cmake-install.sh --skip-license --prefix=/usr/bin/cmake && \
-    rm /tmp/cmake-install.sh
+    mkdir -p /usr/share/cmake/${CMAKE_VERSION} && \
+    /tmp/cmake-install.sh --skip-license --prefix=/usr/share/cmake/${CMAKE_VERSION} && \
+    rm /tmp/cmake-install.sh && \
+    ln -s /usr/share/cmake/${CMAKE_VERSION}/bin/cmake /usr/bin/cmake
 
 # Exercism
 RUN curl -LJ https://github.com/exercism/cli/releases/download/v${EXERCISM_VERSION}/exercism-${EXERCISM_VERSION}-linux-x86_64.tar.gz -o /tmp/exercism.tar.gz && \
