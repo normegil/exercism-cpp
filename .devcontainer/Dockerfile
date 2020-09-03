@@ -43,3 +43,7 @@ RUN curl -LJ https://github.com/exercism/cli/releases/download/v${EXERCISM_VERSI
     mkdir /tmp/exercism && \
     tar -xf /tmp/exercism.tar.gz -C /tmp/exercism && \
     cp /tmp/exercism/exercism /usr/bin
+
+# Boost
+RUN apt-get update && \
+    apt-get libboost-all-dev
