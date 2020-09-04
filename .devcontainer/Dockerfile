@@ -24,7 +24,7 @@ RUN apt-get update && \
 
 # MAKE
 RUN apt-get update && \
-    apt-get install make
+    apt-get install -y make
 
 # CURL
 RUN apt-get update && \
@@ -46,4 +46,4 @@ RUN curl -LJ https://github.com/exercism/cli/releases/download/v${EXERCISM_VERSI
 
 # Boost
 RUN apt-get update && \
-    apt-get libboost-all-dev
+    apt-get install -y libboost-all-dev
