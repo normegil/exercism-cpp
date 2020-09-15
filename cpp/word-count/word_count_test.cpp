@@ -60,7 +60,6 @@ TEST_CASE("ignores_punctuation")
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("includes_numbers")
 {
     const map<string, int> expected{{"testing", 2}, {"1", 1}, {"2", 1}};
@@ -87,6 +86,7 @@ TEST_CASE("with_apostrophes")
 
     REQUIRE(expected == actual);
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 TEST_CASE("with_quotations")
 {

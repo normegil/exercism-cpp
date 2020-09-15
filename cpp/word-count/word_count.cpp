@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <sstream>
+#include <cctype>
 #include <iostream>
 
 namespace word_count
@@ -33,7 +34,7 @@ namespace word_count
                 {
                     subsplitted.push_back(r);
                 }
-                std::cout << word << " (" << sep << ") " << subsplitted.size() << std::endl;
+                // std::cout << word << " (" << sep << ") " << subsplitted.size() << std::endl;
             }
             splitted = subsplitted;
         }
@@ -43,20 +44,33 @@ namespace word_count
     std::map<std::string, int> words(std::string text)
     {
         std::cout << "---------------------------------------------" << std::endl;
+        std::cout << text << std::endl;
         std::map<std::string, int> count = {};
 
         auto words = split(text);
 
-        std::cout << text << ": " << words.size() << " - " << words[0] << std::endl;
+        // std::cout << text << ": " << words.size() << " - " << words[0] << std::endl;
 
         for (auto &&word : words)
         {
-            if ("" == word)
+            std::string tmp{};
+
+            for (auto &&c : word)
+            {
+                if (std::iscntrl(c) || std::ispunct(c))
+                {
+                    continue;
+                }
+
+                tmp.push_back(std::tolower(c));
+            }
+
+            if ("" == tmp)
             {
                 continue;
             }
 
-            count[word] += 1;
+            count[tmp] += 1;
         }
 
         for (auto &&p : count)
