@@ -86,7 +86,6 @@ TEST_CASE("with_apostrophes")
 
     REQUIRE(expected == actual);
 }
-#if defined(EXERCISM_RUN_ALL_TESTS)
 
 TEST_CASE("with_quotations")
 {
@@ -97,6 +96,7 @@ TEST_CASE("with_quotations")
     REQUIRE(expected == actual);
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("substrings_from_the_beginning")
 {
     const map<string, int> expected{{ "joe", 1 }, { "can't", 1 }, { "tell", 1 }, { "between", 1 }, { "app", 1 }, { "apple", 1 }, { "and", 1 }, { "a", 1 }};

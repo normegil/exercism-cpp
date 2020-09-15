@@ -55,9 +55,9 @@ namespace word_count
         {
             std::string tmp{};
 
-            for (auto &&c : word)
+            for (size_t i = 0; i < word.length(); i++)
             {
-                if (std::iscntrl(c) || std::ispunct(c))
+                if ('\'' != c && (std::iscntrl(c) || std::ispunct(c)))
                 {
                     continue;
                 }
